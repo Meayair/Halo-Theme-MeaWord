@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: html(title='分类列表', content = ~{::content}, header = ~{fragments/header::content}, navbar = ~{}, ajaxscrolljs = ~{})}"
+>
+  <th:block th:fragment="content">
+    <div class="nei_top"></div>
+    <section class="post-loop">
+      <div class="container">
+        <div class="post-box">
+          <div id="categories" class="mod-archive-name">分类列表</div>
+            <ul class="mod-archive-list">
+              <th:block th:each="category : ${categories}">
+                <li>
+                  <a th:href="@{${category.status?.permalink}}" rel="tag">
+                    <th:block th:text="${category.spec?.displayName}"></th:block>
+                    <span th:text="'(' + ${category.postCount} +')'"></span>
+                  </a>
+              </li>
+              </th:block>
+            </ul>
+        </div>
+      </div>
+    </section>
+  </th:block>
+</html>

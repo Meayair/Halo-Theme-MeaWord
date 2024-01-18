@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: html(title='归档', content = ~{::content}, header = ~{fragments/header::content}, navbar = ~{}, ajaxscrolljs = ~{})}"
+>
+  <th:block th:fragment="content">
+    <div class="nei_top"></div>
+    <section class="post-loop">
+      <div class="container">
+        <div class="post-box">
+          <div class="post-box-txt">
+            <h3 class="latest_post">归档</h3>
+          </div>
+          <th:block th:each="archive : ${archives}">
+            <div th:text="${archive.year}" th:id="'year-' + ${archive.year}" class="mod-archive-name"></div>
+            <ul class="mod-archive-list">
+              <th:block th:each="month : ${archive.months}">
+                <li th:each="post : ${month.posts}">
+                  <time class="mod-archive-time text-nowrap me-4" th:datetime="${post.spec?.publishTime}" th:text="${#temporals.format(post.spec?.publishTime, 'MM-dd')}"></time>
+                  <a th:href="@{${post.status?.permalink}}" th:text="${post.spec?.title}"></a>
+                </li>
+              </th:block>
+            </ul>
+          </th:block>
+          <th:block th:insert="~{fragments/posts :: pagination(posts=${archives})}"></th:block>
+        </div>
+      </div>
+    </section>
+  </th:block>
+</html>

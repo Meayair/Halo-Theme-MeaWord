@@ -1,0 +1,73 @@
+<th:block th:fragment="pagination" th:with="posts=${posts}">
+  <div class="page-navigator">
+    <li class="prev" th:if="${posts.hasPrevious()}"><a th:href="@{${posts.prevUrl}}"><i class="bi-arrow-left"></i></a></li>
+    <li><a
+      class="current"
+      th:with="totalPage=${posts.totalPages}"
+      th:text="'第 ' + ${posts.page} + ' 页 / 共 ' + ${totalPage} + ' 页 '"
+      >第 1 页 / 共 1 页</a></li>
+    <li class="next" th:if="${posts.hasNext()}"><a th:href="@{${posts.nextUrl}}"><i class="bi-arrow-right"></i></a></li>
+  </div>
+</th:block>
+
+
+<th:block th:fragment="simple-post-list(posts)">
+  <section id="writing" class="flex-auto flex flex-col">
+    <h2 class="h1"><a th:href="@{/archives}">Writing</a></h2>
+    <ul class="post-list flex-auto">
+      <th:block th:each="item : ${posts.items}">
+        <li class="post-item">
+          <div class="meta">
+            <time
+              th:datetime="${item.spec.publishTime}"
+              itemprop="datePublished"
+              th:text="${#temporals.format(item.spec.publishTime, 'yyyy-MM-dd')}"
+            >
+            </time>
+          </div>
+          <span>
+            <a th:href="@{${item.status?.permalink}}" th:text="${item.spec.title}">文章标题</a>
+            <i
+              class="iconify iconify-middle"
+              data-icon="typcn:pin-outline"
+              th:if="${item.spec.pinned}"
+              style="color: var(--color-link)"
+            ></i>
+          </span>
+        </li>
+      </th:block>
+    </ul>
+    <th:block th:insert="~{fragments/posts :: pagination}"></th:block>
+  </section>
+</th:block>
+
+<th:block th:fragment="post(posts)">
+  <th:block th:each="post : ${posts}">
+  <div class="post_list">
+    <div class="post_beici"></div>
+    <h2 class="hover-target">
+      <a 
+        th:href="@{${post.status?.permalink}}"
+        th:title="${post.spec.title}"
+        th:text="${post.spec.title}"
+        >
+      </a>
+    </h2>
+    <p style="position:relative" th:text="${post.status?.excerpt}"></p>
+    <div class="post_loop_info">
+      <th:block th:each="contributor : ${post?.contributors}">
+      <span
+        th:text="${contributor?.displayName}"
+      ></span>
+      </th:block>
+      <span 
+      th:each="category : ${post.categories}" 
+      th:href="@{${category.status.permalink}}"
+      th:text="${category.spec.displayName}"
+      th:title="${category.spec.displayName}"
+      ></span>
+      <span th:text="${#temporals.format(post.spec.publishTime, 'yyyy-MM-dd')}"></span>
+    </div>
+  </div>
+  </th:block>
+</th:block>

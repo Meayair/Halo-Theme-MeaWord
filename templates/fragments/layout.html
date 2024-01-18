@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="html (title, content, header, navbar, ajaxscrolljs)">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title th:text="${#strings.defaultString(title, site.title)}"></title>
+    <link rel='stylesheet' id='bootstrap-css' th:href="@{/assets/css/bootstrap.min.css(v=${theme.spec.version})}" href='./assets/css/bootstrap.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='bifont-css' th:href="@{/assets/css/bootstrap-icons.css(v=${theme.spec.version})}" href='./assets/css/bootstrap-icons.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='stylecss-css' th:href="@{/assets/css/style.css(v=${theme.spec.version})}" href='./assets/css/style.css' type='text/css' media='all' />
+    <!-- jquery -->
+    <script type="text/javascript" th:src="@{/assets/js/jquery.min.js(v=${theme.spec.version})}" id="jquery-min-js"></script>
+    <style th:text="${theme.config?.styles?.color_schema}==2?':root{--bs-main:#c62641;--bs-backguound:#f8f8f8}':(${theme.config?.styles?.color_schema}==1?':root{--bs-main:#b95d40;--bs-backguound:#e6dece}':':root{--bs-main:#8d9265;--bs-backguound:#d6d7c8}')"></style>
+  </head>
+  <body class="home blog" >
+    <th:block th:replace="${header}" />
+
+    <th:block th:replace="${content}" />
+    <button class="scrollToTopBtn" title="返回顶部"><i class="bi bi-chevron-up"></i></button>
+    <footer class="footer">
+        <div class="container">
+            <halo:footer />
+            <h3 th:text="${theme.config?.styles?.one_word}"></h3>
+            <p>
+                ©
+                <span
+                  id="site_date"
+                  th:with="now=${#temporals.createNow()}"
+                  th:text="${#temporals.format(now, 'yyyy')}"
+                ></span>
+                <span th:text="${site?.title}"></span>. 
+                Powered by <a href="https://halo.run" target="_blank">Halo</a>
+                Designed by <a href="https://www.bawge.com/" target="_blank">Meayair</a>
+            </p>
+            <th:block th:if="${theme.config?.styles?.beian_number}">
+            <p><a class="beian" href="https://beian.miit.gov.cn/" rel="external nofollow" target="_blank" title="备案号"><i class="bi bi-shield-check me-1"></i><th:block th:text="${theme.config?.styles?.beian_number}"></th:block></a></p>
+            </th:block>
+        </div>
+    </footer>
+    <th:block th:insert="~{fragments/common :: menu_right}"></th:block>
+    <script type="text/javascript" th:src="@{/assets/js/bootstrap.min.js(v=${theme.spec.version})}" id="bootstrap-js"></script>
+    <script type="text/javascript" th:src="@{/assets/js/main.js(v=${theme.spec.version})}" id="main-js"></script>
+    <th:block th:replace="${ajaxscrolljs}" />
+  </body>
+</html>

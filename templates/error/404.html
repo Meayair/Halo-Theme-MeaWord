@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{/fragments/layout :: html(title='404', content = ~{::content}, header = ~{fragments/header::content}, navbar = ~{}, ajaxscrolljs = ~{})}"
+>
+  <th:block th:fragment="content">
+    <div class="nei_top"></div>
+    <section class="post-loop">
+      <div class="container">
+        <div class="post-box">
+          <div class="post-box-txt">
+            <h3 class="latest_post" th:text="${error.title}"></h3>
+          </div>
+          <div class="post_loop">
+            <p th:text="${error?.detail}"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </th:block>
+</html>

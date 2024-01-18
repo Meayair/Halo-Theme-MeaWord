@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: html(title=${site.title}, content = ~{::content}, header = ~{fragments/header::content}, navbar = ~{}, ajaxscrolljs = ~{::ajaxscrolljs})}"
+>
+  <th:block th:fragment="content">
+      <section id="banner" class="carousel slide" data-bs-ride="carousel"  th:if="${not #arrays.isEmpty(theme.config.styles.banners)}">
+        <div class="carousel-indicators">
+          <button th:each="feature, index : ${theme.config.styles.banners}" type="button" data-bs-target="#banner" th:data-bs-slide-to="${index.index}" th:class="${index.index} == 0?'active':''"></button>
+        </div>
+        <div class="carousel-inner">
+          <div th:each="feature, index : ${theme.config.styles.banners}" th:class="${index.index} == 0?'carousel-item active':'carousel-item'">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-md-10">
+                  <div class="banner_loop">
+                    <div class="beici">M</div>
+                    <h2>
+                      <a th:href="${feature.link}" th:title="${feature.title}" th:text="${feature.title}"></a>
+                    </h2>
+                    <div class="banner_loop_info">
+                      <p th:text="${feature.subtitle}"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#banner" data-bs-slide="prev">
+          <i class="bi bi-chevron-compact-left"></i>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#banner" data-bs-slide="next">
+          <i class="bi bi-chevron-compact-right"></i>
+        </button>
+      </section>
+    <div class="nei_top" th:if="${#arrays.isEmpty(theme.config.styles.banners)}"></div>
+    <section class="post-loop">
+      <div class="container">
+        <div class="post-box">
+          <div class="post-box-txt">
+            <h3 class="latest_post">最新文章</h3>
+          </div>
+          <div class="post_loop">
+            <th:block th:insert="~{fragments/posts :: post(${posts})}"></th:block>
+          </div>
+          <th:block th:if="${theme.config?.styles?.need_ajax_scroll}">
+          <div class="no-more">没有更多了~</div>
+          <div id="spinner" class="spinner">
+              <div class="spinner-grow" role="status">
+                  <span class="visually-hidden"></span>
+              </div>
+          </div>
+          </th:block>
+          <th:block th:insert="~{fragments/posts :: pagination}"></th:block>
+        </div>
+      </div>
+    </section>
+  </th:block>
+  <th:block th:fragment="ajaxscrolljs" th:insert="~{fragments/ajaxscrolljs :: ajaxscrolljs}"></th:block>
+</html>

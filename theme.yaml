@@ -1,0 +1,17 @@
+apiVersion: theme.halo.run/v1alpha1
+kind: Theme
+metadata:
+  name: theme-meaword
+spec:
+  displayName: MeaWord
+  author:
+    name: meayair
+    website: https://www.bawge.com
+  description: 一个新手的尝试。
+  logo: /themes/theme-meaword/assets/images/logo_icon.png
+  website: https://www.bawge.com
+  repo: https://github.com/Meayair/Typecho-Theme-MeaWord
+  settingName: theme-meaword-setting
+  configMapName: theme-meaword-configmap
+  version: 1.0.1
+  requires: ">=2.1.0"

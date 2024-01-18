@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: html(title = ${singlePage.spec.title}, content = ~{::content}, header = ~{fragments/header::content}, navbar = ~{}, ajaxscrolljs = ~{})}"
+>
+  <th:block th:fragment="content">
+    <div class="nei_top"></div>
+    <section class="post-loop">
+      <div class="container">
+        <div class="post-box">
+          <div class="post_list post_head_title">
+            <div class="post_beici">H</div>
+            <h1 th:text="${singlePage.spec?.title}"></h1>
+            <div class="post_loop_info">
+              <span class="author" itemprop="author" itemscope th:each="contributor : ${singlePage?.contributors}">
+                <a th:text="${contributor?.displayName}"></a>
+              </span>
+              <span th:text="${#temporals.format(singlePage.spec?.publishTime, 'yyyy-MM-dd')}"></span>
+            </div>
+          </div>
+          <article th:utext="${singlePage.content?.content}">
+          </article>
+          <div class="post_tag">
+            <div class="mt-4">
+            </div>
+          </div>
+          <div class="post-comment">
+            <halo:comment
+              group="content.halo.run"
+              kind="SinglePage"
+              th:name="${singlePage.metadata?.name}"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  </th:block>
+</html>

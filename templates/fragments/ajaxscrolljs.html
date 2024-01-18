@@ -1,0 +1,23 @@
+<th:block th:fragment="ajaxscrolljs">
+    <th:block th:if="${theme.config?.styles?.need_ajax_scroll}">
+      <script type="text/javascript" th:src="@{/assets/js/ajax-scroll.js(v=${theme.spec.version})}" id="ajax-scroll-js"></script>
+      <script>
+        // ajax-scroll
+        let ias = new InfiniteAjaxScroll('.post_loop', {
+        item: '.post_list',
+        next: '.next a',
+        pagination: '.page-navigator',
+        spinner: '#spinner',
+        });
+        ias.on('last', function() {
+          let el = document.querySelector('.no-more');
+          el.style.opacity = '1';
+        })
+        ias.on('page', (event) => {
+          document.title = event.title;
+          let state = history.state;
+          history.replaceState(state, event.title, event.url);
+        });
+      </script>
+    </th:block>
+  </th:block>

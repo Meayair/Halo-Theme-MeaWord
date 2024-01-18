@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: html(title = ${title}, content = ~{::content}, header = ~{fragments/header::content}, navbar = ~{}, ajaxscrolljs = ~{::ajaxscrolljs})}"
+>
+  <th:block th:fragment="content">
+    <div class="nei_top"></div>
+    <section class="post-loop">
+      <div class="container">
+        <div class="post-box">
+          <div class="post-box-txt">
+            <h3 class="latest_post">瞬间</h3>
+          </div>
+          <div class="post_loop">
+            <th:block th:each="moment : ${moments.items}">
+              <div class="post_list post_list_shuoshuo">
+                <div class="post-date">
+                    <span class="post-date-day" th:text="${#temporals.format(moment.spec.releaseTime, 'dd')}"></span><span class="post-date-month" th:text="${#temporals.format(moment.spec.releaseTime, 'MMMM', new java.util.Locale('en'))}"></span>
+                </div>
+                <div style="box-shadow: 0px 0px 15px rgb(199 199 199 / 65%) inset;padding: 2rem 2rem 1rem 2rem;" th:utext="${moment.spec.content?.html}"></div>
+                <div class="post_loop_info">
+                  <span th:text="${#temporals.format(moment.spec.releaseTime, 'yyyy-MM-dd HH:mm a', new java.util.Locale('en'))}"></span>
+                </div>
+              </div>
+            </th:block>
+          </div>
+          <th:block th:if="${theme.config?.styles?.need_ajax_scroll}">
+          <div class="no-more">没有更多了~</div>
+          <div id="spinner" class="spinner">
+              <div class="spinner-grow" role="status">
+                  <span class="visually-hidden"></span>
+              </div>
+          </div>
+          </th:block>
+          <div class="page-navigator">
+            <li class="prev" th:if="${moments.hasPrevious()}"><a th:href="@{${moments.prevUrl}}"><i class="bi-arrow-left"></i></a></li>
+            <li><a
+              class="current"
+              th:with="totalPage=${moments.totalPages}"
+              th:text="'第 ' + ${moments.page} + ' 页 / 共 ' + ${totalPage} + ' 页 '"
+              >第 1 页 / 共 1 页</a></li>
+            <li class="next" th:if="${moments.hasNext()}"><a th:href="@{${moments.nextUrl}}"><i class="bi-arrow-right"></i></a></li>
+          </div>
+        </div>
+      </div>
+    </section>
+  </th:block>
+  <th:block th:fragment="ajaxscrolljs" th:insert="~{fragments/ajaxscrolljs :: ajaxscrolljs}"></th:block>
+</html>

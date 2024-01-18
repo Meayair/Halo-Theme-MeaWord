@@ -1,0 +1,50 @@
+<th:block th:fragment="menu_main">
+  <nav class="header-menu">
+    <ul class="header-menu-ul">
+      <li id="menu-item-home" class="menu-item"><a th:href="@{/}" aria-current="page">首页</a></li>
+      <li th:each="menuItem : ${menuFinder.getPrimary().menuItems}">
+      <a class="menu-item"
+        th:href="@{${menuItem.status?.href}}"
+        th:target="${menuItem.spec.target?.value}"
+        th:aria-label="'Menu named ' + ${menuItem.status?.displayName}"
+        th:text="${menuItem.status?.displayName}"
+      ></a>
+      </li>
+    </ul>
+  </nav>
+  <div class="top_icon" style="display: flex;">
+    <div class="top_icon_btn theme-switch d-none d-lg-flex" onclick="switchDarkMode()"><i
+        class="bi bi-lightbulb-fill"></i></div>
+    <div class="top_icon_btn collapsed" type="button" onclick="SearchWidget.open();"><i class="bi bi-search collapse-show"></i><i
+        class="bi bi-x-circle collapse-hide"></i></div>
+    <button class="top_icon_btn d-lg-none" type="button" data-bs-toggle="offcanvas"
+      data-bs-target="#right-canvas"><i class="bi bi-list"></i></button>
+  </div>
+</th:block>
+<th:block th:fragment="menu_right">
+  <div class="offcanvas offcanvas-end" id="right-canvas" style="width: 80%;">
+    <div class="sidebar_canvas">
+      <div class="right-slide-header" style="justify-content: flex-end;">
+        <button type="button" class="theme-switch" onclick="switchDarkMode()"><i
+            style="font-size: 18px;margin-right: 20px;" class="bi bi-lightbulb-fill"></i></button>
+        <button type="button" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-x"></i></button>
+      </div>
+      <div class="sidebar_box" style="height: calc(100vh - 127px);background:unset;">
+        <aside id="nav_menu-2" class="widget widget_nav_menu">
+          <div class="menu-category-container">
+            <ul class="menu">
+              <li th:each="menuItem : ${menuFinder.getPrimary().menuItems}">
+                <a class="menu-item"
+                  th:href="@{${menuItem.status?.href}}"
+                  th:target="${menuItem.spec.target?.value}"
+                  th:aria-label="'Menu named ' + ${menuItem.status?.displayName}"
+                  th:text="${menuItem.status?.displayName}"
+                ></a>
+                </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</th:block>

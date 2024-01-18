@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: html(title=${tag.spec.displayName}, content = ~{::content}, header = ~{fragments/header::content}, navbar = ~{}, ajaxscrolljs = ~{::ajaxscrolljs})}"
+>
+  <th:block th:fragment="content">
+    <div class="nei_top"></div>
+    <section class="post-loop">
+      <div class="container">
+        <div class="post-box">
+          <div class="post-box-txt">
+            <h3 class="latest_post" th:text="'标签：' +${tag.spec?.displayName}"></h3>
+          </div>
+          <div class="post_loop">
+            <th:block th:insert="~{fragments/posts :: post(${posts})}"></th:block>
+          </div>
+          <th:block th:if="${theme.config?.styles?.need_ajax_scroll}">
+          <div class="no-more">没有更多了~</div>
+          <div id="spinner" class="spinner">
+              <div class="spinner-grow" role="status">
+                  <span class="visually-hidden"></span>
+              </div>
+          </div>
+          </th:block>
+          <th:block th:insert="~{fragments/posts :: pagination}"></th:block>
+        </div>
+      </div>
+    </section>
+    <th:block th:fragment="ajaxscrolljs" th:insert="~{fragments/ajaxscrolljs :: ajaxscrolljs}"></th:block>
+  </th:block>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: html(title='标签列表', content = ~{::content}, header = ~{fragments/header::content}, navbar = ~{}, ajaxscrolljs = ~{})}"
+>
+  <th:block th:fragment="content">
+    <div class="nei_top"></div>
+    <section class="post-loop">
+      <div class="container">
+        <div class="post-box">
+          <div id="tags" class="mod-archive-name">标签列表</div>
+            <ul class="mod-archive-list">
+              <th:block th:each="tag : ${tags}">
+                <li class="li-inline">
+                  <a th:href="@{${tag.status?.permalink}}" rel="tag">
+                    <th:block th:text="${tag.spec?.displayName}"></th:block>
+                    <span th:text="'(' + ${tag.postCount} +')'"></span>
+                  </a>
+              </li>
+              </th:block>
+            </ul>
+        </div>
+      </div>
+    </section>
+  </th:block>
+</html>

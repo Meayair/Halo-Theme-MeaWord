@@ -1,0 +1,65 @@
+apiVersion: v1alpha1
+kind: Setting
+metadata:
+  name: theme-meaword-setting
+spec:
+  forms:
+    - group: styles
+      label: 样式
+      formSchema:
+        - $formkit: select
+          name: color_schema
+          label: 配色方案
+          value: "0"
+          options:
+            - label: "抹茶色"
+              value: "0"
+            - label: "橙色"
+              value: "1"
+            - label: "红色"
+              value: "2"
+        - $formkit: select
+          name: logo_title
+          label: logo,标题显示状态
+          value: "0"
+          options:
+            - label: "仅显示logo"
+              value: "0"
+            - label: "仅显示标题"
+              value: "1"
+            - label: "logo,标题同时显示"
+              value: "2"
+        - $formkit: radio
+          name: need_ajax_scroll
+          label: Ajax-scroll自动加载
+          value: false
+          options:
+            - value: true
+              label: 开启
+            - value: false
+              label: 关闭
+        - $formkit: text
+          name: one_word
+          label: 底部一句话
+          placeholder: "在这里填入一句话显示在底部"
+        - $formkit: text
+          name: beian_number
+          label: 备案号
+          placeholder: "在这里填入站点备案号"
+        - $formkit: repeater
+          name: banners
+          label: 轮播图设置
+          value: [ ]
+          children:
+            - $formkit: text
+              name: title
+              label: 标题
+              placeholder: 请输入标题
+            - $formkit: text
+              name: subtitle
+              label: 副标题
+              placeholder: 请输入副标题
+            - $formkit: text
+              name: link
+              label: 链接
+              placeholder: 请输入跳转链接
