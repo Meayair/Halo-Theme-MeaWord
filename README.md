@@ -34,7 +34,7 @@ MeaWord是一款体现文字美感的极简主题，在大多数主题中，图�
 
 ## 使用方法
 
-1. 安装Halo，安装指南：[官方文档]([https://www.bawge.com/archives/63.html](https://docs.halo.run/category/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97))。
+1. 安装Halo，安装指南：[官方文档](https://docs.halo.run/category/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97)。
 2. 到 [Release](https://github.com/Meayair/Halo-Theme-MeaWord/releases) 下载主题。
 3. 在Halo后台 Console 端的主题菜单直接上传安装即可使用。
 4. 安装相应依赖插件。
@@ -49,7 +49,7 @@ MeaWord是一款体现文字美感的极简主题，在大多数主题中，图�
 
 ### 开源项目
 
-[Halo]([https://github.com/jquery/jquery](https://github.com/halo-dev/halo)) |[JQuery](https://github.com/jquery/jquery) | [bootstrap](https://github.com/twbs/bootstrap) 
+[Halo](https://github.com/halo-dev/halo) | [JQuery](https://github.com/jquery/jquery) | [bootstrap](https://github.com/twbs/bootstrap) 
 
 ## License
 
