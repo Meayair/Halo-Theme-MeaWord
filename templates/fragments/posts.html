@@ -44,7 +44,7 @@
 <th:block th:fragment="post(posts)">
   <th:block th:each="post : ${posts}">
   <div class="post_list">
-    <div class="post_beici"></div>
+    <div class="post_beici" th:data-text="${post.spec.title}"></div>
     <h2 class="hover-target">
       <a 
         th:href="@{${post.status?.permalink}}"

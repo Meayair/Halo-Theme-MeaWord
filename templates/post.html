@@ -9,7 +9,7 @@
       <div class="container">
         <div class="post-box">
           <div class="post_list post_head_title">
-            <div class="post_beici">H</div>
+            <div class="post_beici" th:data-text="${post.spec?.title}"></div>
             <h1 th:text="${post.spec?.title}"></h1>
             <div class="post_loop_info">
               <span class="author" itemprop="author" itemscope th:each="contributor : ${post?.contributors}">

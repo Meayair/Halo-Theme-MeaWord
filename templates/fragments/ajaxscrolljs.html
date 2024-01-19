@@ -17,6 +17,7 @@
           document.title = event.title;
           let state = history.state;
           history.replaceState(state, event.title, event.url);
+          beiciAll();
         });
       </script>
     </th:block>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: html(title = '友情链接', content = ~{::content}, header = ~{fragments/header::content}, navbar = ~{}, ajaxscrolljs = ~{})}">
+<th:block th:fragment="content">
+  <div class="nei_top"></div>
+  <section class="post-loop">
+    <div class="container">
+      <div class="post-box">
+        <div class="post_list post_head_title">
+          <div class="post_beici" data-text="友邻"></div>
+          <h1>友邻</h1>
+          <div class="post_loop_info">
+          </div>
+        </div>
+          <th:block th:each="group : ${groups}" th:if="${not #lists.isEmpty(group.links)}">
+          <article class="meapost">
+          <h2 th:if="${#lists.size(groups) > 1}" th:text="${group.spec.displayName}"></h2>
+          </article>
+          <article class="meapost">
+            <blockquote class="block-extra block-friend" th:each="link : ${group.links}">
+              <a rel="noopener" target="_blank" th:href="@{${link.spec.url}}" th:text="${link.spec.displayName}"></a>
+            </blockquote>
+          </article>
+        </th:block>
+        <div class="post_tag">
+        </div>
+      </div>
+    </div>
+  </section>
+</th:block>
+</html>
