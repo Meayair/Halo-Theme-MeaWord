@@ -23,9 +23,9 @@ spec:
           label: logo,标题显示状态
           value: "0"
           options:
-            - label: "仅显示logo"
-              value: "0"
             - label: "仅显示标题"
+              value: "0"
+            - label: "仅显示logo"
               value: "1"
             - label: "logo,标题同时显示"
               value: "2"
