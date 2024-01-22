@@ -5,8 +5,8 @@
       <div class="container">
         <div class="head_top">
           <a class="logo" th:href="@{/}">
-            <img th:if="${theme.config?.styles?.logo_title == '2' || theme.config?.styles?.logo_title == '0'}" th:src="${site?.logo}" th:alt="${site?.title}">
-            <b th:if="${theme.config?.styles?.logo_title == '2' || theme.config?.styles?.logo_title == '1'}" th:text="${site?.title}"></b>
+            <img th:if="${theme.config?.styles?.logo_title == '2' || theme.config?.styles?.logo_title == '1'}" th:src="${site?.logo}" th:alt="${site?.title}">
+            <b th:if="${theme.config?.styles?.logo_title == '2' || theme.config?.styles?.logo_title == '0'}" th:text="${site?.title}"></b>
           </a>
           <div class="top_right">
             <th:block th:insert="~{fragments/common :: menu_main}"></th:block>
