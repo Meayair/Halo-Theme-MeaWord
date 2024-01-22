@@ -24,10 +24,20 @@ MeaWord是一款体现文字美感的极简主题，在大多数主题中，图�
 * 适配官方连接管理插件。
 * 自行挖掘...
 
+## 依赖插件
+* 官方插件：评论组件
+* 官方插件：搜索组件
+* 官方插件：瞬间
+* 官方插件：链接管理
+
+注：依赖插件均可在官方应用市场中直接安装。
+
 ## 使用方法
 
-文档正在飞速攥写中...
-注意：当前主题未完成，请勿在生产环境中使用。
+1. 安装Halo，安装指南：[官方文档](https://docs.halo.run/category/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97)。
+2. 到 [Release](https://github.com/Meayair/Halo-Theme-MeaWord/releases) 下载主题。
+3. 在Halo后台 Console 端的主题菜单直接上传安装即可使用。
+4. 安装相应依赖插件。
 
 ## 二次开发
 
@@ -39,7 +49,7 @@ MeaWord是一款体现文字美感的极简主题，在大多数主题中，图�
 
 ### 开源项目
 
-[JQuery](https://github.com/jquery/jquery) | [bootstrap](https://github.com/twbs/bootstrap) 
+[Halo](https://github.com/halo-dev/halo) | [JQuery](https://github.com/jquery/jquery) | [bootstrap](https://github.com/twbs/bootstrap) 
 
 ## License
 
